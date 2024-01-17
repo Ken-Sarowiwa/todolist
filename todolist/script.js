@@ -1,60 +1,52 @@
-let todosContainer = document.querySelector('.todos')
+// Function to add a new task
+function addTask() {
+    const newTaskInput = document.getElementById("new-task");
+    const taskText = newTaskInput.value.trim();
 
-let todos = []
-
-let todoform = document.querySelector('#todoform')
-let newtodo = document.getElementById("createtodo")
-let checkedstatus = document.querySelector(".checkbox")
-
-todoform.addEventListener("submit", (e)=>{
-    e.preventDefault()
-
-    if(newtodo.value.trim() !== ""){
-        let todo = {
-            taskname: newtodo.value.trim(),
-            status: checkedstatus.checked
-        }
-
-        todos.push(todo)
-
-        console.log(todos);
-
-        localStorage.setItem('todos', JSON.stringify(todos))
-
-        displayTodos()
+    // Check if the input is not empty
+    if (taskText === "") {
+        alert("Please enter a valid task.");
+        return;
     }
-})
 
-let displayTodos = function(){
+    const tasksContainer = document.getElementById("tasks-container");
 
-    let taskItems = localStorage.getItem("todos")
+    // Create a new task element
+    const taskDiv = document.createElement("div");
+    taskDiv.className = "task";
 
-    taskItems = JSON.parse(taskItems)
+    // Create a checkbox for the new task
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "checkbox";
+    checkbox.addEventListener("change", toggleCompleted);
 
-    let tasks = document.querySelectorAll('.todos .todo')
+    // Create a span element for the task text
+    const taskTextElement = document.createElement("span");
+    taskTextElement.innerText = taskText;
 
-    tasks.forEach(el=>{
-        el.remove()
-    })
+    // Append the checkbox and task text to the task div
+    taskDiv.appendChild(checkbox);
+    taskDiv.appendChild(taskTextElement);
 
+    // Append the new task div to the tasks container
+    tasksContainer.appendChild(taskDiv);
 
-    taskItems.forEach((el, index)=>{
-        let todo = document.createElement('div')
-        todo.className = "todo"
-
-        let checkbox = document.createElement("input")
-        checkbox.type = "checkbox"
-        checkbox.className ="checkbox"
-        checkbox.checked = el.status
-
-        let taskname = document.createElement('div')
-        taskname.textContent = el.taskname
-
-        todo.appendChild(checkbox)
-        todo.appendChild(taskname)
-
-        todosContainer.appendChild(todo)
-    })
+    // Clear the input field after adding a task
+    newTaskInput.value = "";
 }
 
-displayTodos()
+// Function to toggle the completed status of a task
+function toggleCompleted(event) {
+    const checkbox = event.target;
+    const taskTextElement = checkbox.nextSibling;
+
+    // Check if the checkbox is checked
+    if (checkbox.checked) {
+        // Apply completed styling if checked
+        taskTextElement.classList.add("completed");
+    } else {
+        // Remove completed styling if unchecked
+        taskTextElement.classList.remove("completed");
+    }
+}

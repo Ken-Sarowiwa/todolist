@@ -1,87 +1,37 @@
-*{
-    padding: 0;
-    margin: 0;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.top{
-    height: 40vh;
-    background-image: linear-gradient(to right, blue, rgb(189, 26, 159));
+.todo-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
 }
 
-.bottom{
-    background-color: rgb(20, 4, 77);
-    height: 60vh;
+#tasks-container {
+  margin-top: 20px;
 }
 
-.modal{
-    position: fixed;
-    z-index: 2;
-    top: 20vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
+.task {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-.todomain{
-    width: 60vw;
-    max-width: 500px;
-    /* background-color: red; */
+.completed {
+  text-decoration: line-through;
+  opacity: 0.7;
 }
 
-h1{
-    color:white;
-}
-
-.inputs{
-    display:flex;
-    align-items: center;
-    padding: 10px;
-    background-color: rgb(20, 4, 77);
-    margin-top: 20px;
-}
-
-input[type="checkbox"]{
-    width: 25px;
-    height: 25px;
-    background-color: black;
-    appearance: none;
-    clip-path: circle(45% at 50% 50%);
-}
-
-.checkbox:checked{
-    appearance: auto;
-}
-
-#createtodo{
-    background-color: rgb(20, 4, 77);
-    border: none;
-    padding: 5px;
-    margin-left: 10px;
-    width: 100%;
-    color: white;
-}
-
-.todos{
-    background-color: rgb(10, 2, 37);
-    margin-top: 30px;
-}
-
-.todo{
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    color: rgb(169, 169, 169);
-    border-bottom: 0.5px solid gray;
-}
-
-.todo > div{
-    margin-left: 15px;
-}
-
-@media screen and (max-width: 378px) {
-    .todomain{
-        width: 90vw;
-        max-width: 500px;
-        /* background-color: red; */
-    }
+.checkbox {
+  margin-right: 10px;
 }
